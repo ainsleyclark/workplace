@@ -18,10 +18,13 @@ An extremely simple Facebook Workplace client for sending transmissions to threa
 ## Install
 
 ```
-go get -u github.com/ainsleyclark/redigo
+go get -u github.com/ainsleyclark/workplace
 ```
 
 ## Quick Start
+
+See below for a quick start to create a new Workplace client and sending off a transmission. For more details please
+see [Go Doc](https://pkg.go.dev/github.com/ainsleyclark/workplace) which includes information on all types.
 
 ```go
 func Example() error {
@@ -34,8 +37,8 @@ func Example() error {
 	// Create a new Workplace Transmission that contains
 	// the thread ID and message to be sent to the thread.
 	tx := workplace.Transmission{
-	Thread:  "thread-id",
-	Message: "message",
+		Thread:  "thread-id",
+		Message: "message",
 	}
 
 	// Send the transmission to the workplace API.
