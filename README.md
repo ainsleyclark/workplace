@@ -1,5 +1,5 @@
 <div align="center">
-<img height="250" src="res/logo.svg?logo=new" alt="Workplace Logo" />
+<img height="250" src="res/logo.svg?logo=v2" alt="Workplace Logo" />
 
 &nbsp;
 
@@ -12,7 +12,7 @@
 </div>
 
 # Workplace
-A Redis client for GoLang featuring Tags with Gob &amp; JSON encoding.
+An extremely simple Facebook Workplace client for sending transmissions to chats.
 
 ## Why?
 
@@ -24,6 +24,33 @@ go get -u github.com/ainsleyclark/redigo
 ```
 
 ## Quick Start
+
+```go
+func Example() error {
+	// Create as new Workplace client.
+	wp, err := workplace.New(workplace.Config{Token: "my-token"})
+	if err != nil {
+		return err
+	}
+
+	// Create a new Workplace Transmission that contains
+	// the thread ID and message to be sent to the thread.
+	tx := workplace.Transmission{
+		Thread:  "thread-id",
+		Message: "message",
+	}
+
+	// Send the transmission to the workplace API.
+	err = wp.Notify(tx)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+```
+
+## Roadmap
 
 ## Contributing
 
