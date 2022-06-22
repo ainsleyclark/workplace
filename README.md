@@ -12,10 +12,10 @@
 </div>
 
 # Workplace
+
 An extremely simple Facebook Workplace client for sending transmissions to chats.
 
 ## Why?
-
 
 ## Install
 
@@ -30,20 +30,20 @@ func Example() error {
 	// Create as new Workplace client.
 	wp, err := workplace.New(workplace.Config{Token: "my-token"})
 	if err != nil {
-		return err
+	return err
 	}
 
 	// Create a new Workplace Transmission that contains
 	// the thread ID and message to be sent to the thread.
 	tx := workplace.Transmission{
-		Thread:  "thread-id",
-		Message: "message",
+	Thread:  "thread-id",
+	Message: "message",
 	}
 
 	// Send the transmission to the workplace API.
 	err = wp.Notify(tx)
 	if err != nil {
-		return err
+	return err
 	}
 
 	return nil
@@ -51,6 +51,8 @@ func Example() error {
 ```
 
 ## Roadmap
+
+- Add all workplace graph endpoints from [Facebook Endpoints](https://github.com/fbsamples/workplace-platform-samples/blob/main/SampleAPIEndpoints/Postman/Workplace_Graph_Collection.json)
 
 ## Contributing
 
@@ -62,4 +64,4 @@ Shout out to the incredible [Maria Letta](https://github.com/MariaLetta) for her
 
 ## Licence
 
-Code Copyright 2022 RediGo. Code released under the [MIT Licence](LICENSE).
+Code Copyright 2022 Ainsley Clark. Code released under the [MIT Licence](LICENSE).
