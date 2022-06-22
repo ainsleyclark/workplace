@@ -1,5 +1,5 @@
 <div align="center">
-<img height="250" src="res/logo.svg" alt="Errors Logo" />
+<img height="250" src="res/logo.svg?log=new" alt="Workplace Logo" />
 
 &nbsp;
 
