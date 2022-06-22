@@ -13,9 +13,7 @@
 
 # Workplace
 
-An extremely simple Facebook Workplace client for sending transmissions to chats.
-
-## Why?
+An extremely simple Facebook Workplace client for sending transmissions to threads.
 
 ## Install
 
