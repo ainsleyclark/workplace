@@ -13,7 +13,7 @@
 
 # Workplace
 
-An extremely simple Facebook Workplace client for sending transmissions to threads.
+An extremely simple Facebook Workplace client for sending transmissions to threads via Go.
 
 ## Install
 
