@@ -78,6 +78,11 @@ func New(config Config) (Notifier, error) {
 	}, nil
 }
 
+// Notify sends a transmission to the corresponding thread with
+// a preformatted message.
+//
+// Returns an error if the message could not be marshalled,
+// sent or there was an error creating the request.
 func (c *Client) Notify(tx Transmission) error {
 	t := transmission{
 		Recipient: recipient{ThreadKey: tx.Thread},

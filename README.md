@@ -6,7 +6,8 @@
 [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
 [![GoDoc](https://godoc.org/github.com/ainsleyclark/workplace?status.svg)](https://pkg.go.dev/github.com/ainsleyclark/workplace)
 [![Test](https://github.com/ainsleyclark/workplace/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/ainsleyclark/workplace/actions/workflows/test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/b3afd7bf115341995077/maintainability)](https://codeclimate.com/github/ainsleyclark/workplace/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cbaaaf90520e011c9a87/maintainability)](https://codeclimate.com/github/ainsleyclark/workplace/maintainability)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e920194577c04e04b11d5f7efa6ce4b5)](https://www.codacy.com/gh/ainsleyclark/workplace/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ainsleyclark/workplace&amp;utm_campaign=Badge_Grade)**
 [![codecov](https://codecov.io/gh/ainsleyclark/workplace/branch/master/graph/badge.svg?token=K27L8LS7DA)](https://codecov.io/gh/ainsleyclark/workplace)
 [![GoReportCard](https://goreportcard.com/badge/github.com/ainsleyclark/workplace)](https://goreportcard.com/report/github.com/ainsleyclark/workplace)
 
