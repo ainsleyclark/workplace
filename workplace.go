@@ -63,7 +63,11 @@ const (
 )
 
 // New returns a new Workplace Client.
-func New(config Config) Notifier {
+func New(config Config) (Notifier, error) {
+	err := config.Validate()
+	if err != nil {
+		return nil, err
+	}
 	return &Client{
 		client: &http.Client{
 			Timeout: Timeout,
@@ -71,9 +75,14 @@ func New(config Config) Notifier {
 		baseURL:    "https://graph.workplace.com/me/messages",
 		config:     config,
 		marshaller: json.Marshal,
-	}
+	}, nil
 }
 
+// Notify sends a transmission to the corresponding thread with
+// a preformatted message.
+//
+// Returns an error if the message could not be marshalled,
+// sent or there was an error creating the request.
 func (c *Client) Notify(tx Transmission) error {
 	t := transmission{
 		Recipient: recipient{ThreadKey: tx.Thread},

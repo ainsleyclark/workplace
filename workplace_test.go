@@ -9,14 +9,35 @@ import (
 	"github.com/ainsleyclark/errors"
 	"net/http"
 	"net/http/httptest"
+	"reflect"
 	"strings"
 	"testing"
 )
 
 func TestNew(t *testing.T) {
-	got := New(Config{})
-	if got == nil {
-		t.Fatal("expecting not nil")
+	tt := map[string]struct {
+		input Config
+		want  error
+	}{
+		"Success": {
+			Config{Token: "token"},
+			nil,
+		},
+		"Error": {
+			Config{Token: ""},
+			errors.New("token cannot be nil"),
+		},
+	}
+
+	for name, test := range tt {
+		t.Run(name, func(t *testing.T) {
+			got, err := New(test.input)
+			if err != nil {
+				if !reflect.DeepEqual(test.want, err) {
+					t.Fatalf("expecting: %s got %s", test.want, got)
+				}
+			}
+		})
 	}
 }
 

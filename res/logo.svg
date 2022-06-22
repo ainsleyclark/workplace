@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="144" height="144" viewBox="0 0 144 144">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="144" height="112" viewBox="0 0 144 112">
   <defs>
     <clipPath id="clip-path">
       <path id="Path_3" data-name="Path 3" d="M140.164,81.783a15.653,15.653,0,0,0-15.645-15.645H47.694a15.645,15.645,0,0,0,0,31.29h76.825a15.653,15.653,0,0,0,15.645-15.645Z" clip-rule="evenodd"/>
@@ -10,9 +10,9 @@
       <path id="Path_23" data-name="Path 23" d="M46.734,101.96s4.528-5.884,4.949-11.581c1.317-17.834,7.1-20.3,7.088-31.329,0-3.831-.533-8.292-2.206-11.776-3.677-7.657-12.513-12.933-21.065-12.9a33.629,33.629,0,0,0-9.926,1.9c-11.3,3.533-15.6,14.656-16.082,24.618-.215,4.411,2.225,11.805.876,16.015-2.812,8.776-3.409,13.7-1.69,20.023,1.466,5.39,10.075,10.857,20.449,11.707,1.768.144,12.483.271,17.607-6.678Z" clip-rule="evenodd"/>
     </clipPath>
   </defs>
-  <g id="Group_7" data-name="Group 7" transform="translate(-1187 -194)">
+  <g id="Group_7" data-name="Group 7" transform="translate(-1187 -212)">
     <g id="_48" data-name="48" transform="translate(1187 194)">
-      <rect id="_4" width="144" height="144" fill="none"/>
+      <rect id="_4" width="144" height="112" transform="translate(0 18)" fill="none"/>
       <g id="Group_6" data-name="Group 6">
         <path id="Path_1" data-name="Path 1" d="M140.164,81.783a15.653,15.653,0,0,0-15.645-15.645H47.694a15.645,15.645,0,0,0,0,31.29h76.825a15.653,15.653,0,0,0,15.645-15.645Z" fill="#343d4c" fill-rule="evenodd"/>
         <g id="Group_1" data-name="Group 1" clip-path="url(#clip-path)">
