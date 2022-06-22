@@ -6,12 +6,13 @@
 [![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
 [![GoDoc](https://godoc.org/github.com/ainsleyclark/workplace?status.svg)](https://pkg.go.dev/github.com/ainsleyclark/workplace)
 [![Test](https://github.com/ainsleyclark/workplace/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/ainsleyclark/workplace/actions/workflows/test.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/b3afd7bf115341995077/maintainability)](https://codeclimate.com/github/ainsleyclark/workplace/maintainability)
 [![codecov](https://codecov.io/gh/ainsleyclark/workplace/branch/master/graph/badge.svg?token=K27L8LS7DA)](https://codecov.io/gh/ainsleyclark/workplace)
 [![GoReportCard](https://goreportcard.com/badge/github.com/ainsleyclark/workplace)](https://goreportcard.com/report/github.com/ainsleyclark/workplace)
 
 </div>
 
-# Workplace
+# 👍 Workplace
 
 An extremely simple Facebook Workplace client for sending transmissions to threads via Go.
 
@@ -31,7 +32,7 @@ func Example() error {
 	// Create as new Workplace client.
 	wp, err := workplace.New(workplace.Config{Token: "my-token"})
 	if err != nil {
-	return err
+		return err
 	}
 
 	// Create a new Workplace Transmission that contains
@@ -44,7 +45,7 @@ func Example() error {
 	// Send the transmission to the workplace API.
 	err = wp.Notify(tx)
 	if err != nil {
-	return err
+		return err
 	}
 
 	return nil
