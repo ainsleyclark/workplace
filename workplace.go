@@ -2,13 +2,13 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-package api
+package workplace
 
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/ainsleyclark/errors"
 	"net/http"
 	"time"
 )
@@ -20,7 +20,7 @@ type (
 		// Notify sends a transmission to the corresponding thread with
 		// a preformatted message.
 		//
-		// Returns errors.INTERNAL if the message could not be marshalled,
+		// Returns an error if the message could not be marshalled,
 		// sent or there was an error creating the request.
 		Notify(tx Transmission) error
 	}
@@ -29,7 +29,7 @@ type (
 	Client struct {
 		client     *http.Client
 		baseURL    string
-		token      string
+		config     Config
 		marshaller func(v any) ([]byte, error)
 	}
 	// Transmission represents the data needed in order to send
@@ -63,20 +63,18 @@ const (
 )
 
 // New returns a new Workplace Client.
-func New(token string) Notifier {
+func New(config Config) Notifier {
 	return &Client{
 		client: &http.Client{
 			Timeout: Timeout,
 		},
 		baseURL:    "https://graph.workplace.com/me/messages",
-		token:      token,
+		config:     config,
 		marshaller: json.Marshal,
 	}
 }
 
 func (c *Client) Notify(tx Transmission) error {
-	const op = "Workplace.Notify"
-
 	t := transmission{
 		Recipient: recipient{ThreadKey: tx.Thread},
 		Message:   message{Text: tx.Message},
@@ -84,23 +82,23 @@ func (c *Client) Notify(tx Transmission) error {
 
 	buf, err := c.marshaller(t)
 	if err != nil {
-		return errors.NewInternal(err, "Error marshalling Workplace transmission", op)
+		return err
 	}
 
 	req, err := http.NewRequest(http.MethodPost, c.baseURL, bytes.NewBuffer(buf))
 	if err != nil {
-		return errors.NewInternal(err, "Error creating new request", op)
+		return err
 	}
 
 	// Add the appropriate auth headers.
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.token))
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.config.Token))
 
 	resp, err := c.client.Do(req)
 	if err != nil {
-		return errors.NewInternal(err, "Error sending Workplace request", op)
+		return err
 	} else if resp.StatusCode != http.StatusOK {
-		return errors.NewInternal(errors.New("invalid status code"), "Error sending Workplace message status: "+resp.Status, op)
+		return errors.New("invalid request with status code: " + resp.Status)
 	}
 	defer resp.Body.Close() // nolint
 
