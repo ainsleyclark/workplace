@@ -84,32 +84,40 @@ func New(config Config) (Notifier, error) {
 // Returns an error if the message could not be marshalled,
 // sent or there was an error creating the request.
 func (c *Client) Notify(tx Transmission) error {
-	t := transmission{
-		Recipient: recipient{ThreadKey: tx.Thread},
-		Message:   message{Text: tx.Message},
-	}
+	chunks := ChunkMessage(tx.Message, 1900) // Text message must be UTF-8 and has a 2000-character limit.
 
-	buf, err := c.marshaller(t)
-	if err != nil {
-		return err
-	}
+	for index, chunk := range chunks {
+		if len(chunks) > 1 {
+			chunk = fmt.Sprintf("Page: %d/%d...\n%s", index+1, len(chunks), chunk)
+		}
 
-	req, err := http.NewRequest(http.MethodPost, c.baseURL, bytes.NewBuffer(buf))
-	if err != nil {
-		return err
-	}
+		t := transmission{
+			Recipient: recipient{ThreadKey: tx.Thread},
+			Message:   message{Text: chunk},
+		}
 
-	// Add the appropriate auth headers.
-	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.config.Token))
+		buf, err := c.marshaller(t)
+		if err != nil {
+			return err
+		}
 
-	resp, err := c.client.Do(req)
-	if err != nil {
-		return err
-	} else if resp.StatusCode != http.StatusOK {
-		return errors.New("invalid request with status code: " + resp.Status)
+		req, err := http.NewRequest(http.MethodPost, c.baseURL, bytes.NewBuffer(buf))
+		if err != nil {
+			return err
+		}
+
+		// Add the appropriate auth headers.
+		req.Header.Add("Content-Type", "application/json")
+		req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.config.Token))
+
+		resp, err := c.client.Do(req)
+		if err != nil {
+			return err
+		} else if resp.StatusCode != http.StatusOK {
+			return errors.New("invalid request with status code: " + resp.Status)
+		}
+		defer resp.Body.Close() // nolint
 	}
-	defer resp.Body.Close() // nolint
 
 	return nil
 }
