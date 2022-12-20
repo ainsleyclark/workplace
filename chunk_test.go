@@ -2,7 +2,7 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-package stringutil
+package workplace
 
 import (
 	"reflect"
@@ -34,7 +34,7 @@ func TestChunks(t *testing.T) {
 
 	for name, test := range tt {
 		t.Run(name, func(t *testing.T) {
-			got := Chunks(test.input, test.size)
+			got := ChunkMessage(test.input, test.size)
 			if !reflect.DeepEqual(test.want, got) {
 				t.Fatalf("expecting: %s got %s", test.want, got)
 			}

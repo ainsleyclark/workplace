@@ -9,7 +9,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/ainsleyclark/workplace/internal/stringutil"
 	"net/http"
 	"time"
 )
@@ -85,7 +84,7 @@ func New(config Config) (Notifier, error) {
 // Returns an error if the message could not be marshalled,
 // sent or there was an error creating the request.
 func (c *Client) Notify(tx Transmission) error {
-	chunks := stringutil.Chunks(tx.Message, 1900) // Text message must be UTF-8 and has a 2000-character limit.
+	chunks := ChunkMessage(tx.Message, 1900) // Text message must be UTF-8 and has a 2000-character limit.
 
 	for index, chunk := range chunks {
 		if len(chunks) > 1 {

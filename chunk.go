@@ -2,11 +2,11 @@
 // Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
-package stringutil
+package workplace
 
-// Chunks splits a string by length according to
+// ChunkMessage splits a string by length according to
 // the chunkSize.
-func Chunks(s string, chunkSize int) []string {
+func ChunkMessage(s string, chunkSize int) []string {
 	if len(s) == 0 {
 		return nil
 	}
